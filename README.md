@@ -10,7 +10,7 @@ The project has been developed simulating the communication between the two coup
 
 ## Project Files
 
-- [SmartBracelets.h] (SmartBracelets.h) contains the struct of the message sent by the two types of motes, and some constant useful to determine the status of the application
+- [SmartBracelets.h](SmartBracelets.h) contains the struct of the message sent by the two types of motes, and some constant useful to determine the status of the application
 - [SmartBraceletsApp.nc](SmartBraceletsApp.nc) where all the used components were declared
 - [SmartBraceletsC.nc](SmartBraceletsC.nc) contains the logic of all the application
 - [RunSimulationScript.py](RunSimulationScript.py) contains the python code needed to execute the TinyOS SIMulator (TOSSIM),
