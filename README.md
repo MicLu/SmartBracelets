@@ -1,5 +1,5 @@
 # SmartBracelets
-Internet Of Things 2022 course project
+Internet of Things 2022 course project
 
 ## Introduction
 
