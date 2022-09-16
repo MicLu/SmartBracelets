@@ -1,0 +1,863 @@
+mkdir -p simbuild/micaz
+  placing object files in simbuild/micaz
+  writing XML schema to app.xml
+  compiling SmartBraceletsAppC to object file sim.o
+ncc -c -shared -fPIC -o simbuild/micaz/sim.o -g -O0 -tossim -fnesc-nido-tosnodes=1000 -fnesc-simulate -fnesc-nido-motenumber=sim_node\(\) -fnesc-gcc=gcc -Wall -Wshadow -Wnesc-all -target=micaz -fnesc-cfile=simbuild/micaz/app.c -board=micasb -DDEFINED_TOS_AM_GROUP=0x22 --param max-inline-insns-single=100000 -DIDENT_APPNAME=\"SmartBraceletsA\" -DIDENT_USERNAME=\"user\" -DIDENT_HOSTNAME=\"user-iot\" -DIDENT_USERHASH=0x2c00343aL -DIDENT_TIMESTAMP=0x630f65deL -DIDENT_UIDHASH=0x0ce12bcfL -Wno-nesc-data-race SmartBraceletsAppC.nc   -fnesc-dump=components -fnesc-dump=variables -fnesc-dump=constants -fnesc-dump=typedefs -fnesc-dump=interfacedefs -fnesc-dump=tags -fnesc-dumpfile=app.xml
+  compiling Python support and C libraries into pytossim.o, tossim.o, and c-support.o
+g++ -c  -shared -fPIC -o simbuild/micaz/pytossim.o -g -O0 -DIDENT_APPNAME=\"SmartBraceletsA\" -DIDENT_USERNAME=\"user\" -DIDENT_HOSTNAME=\"user-iot\" -DIDENT_USERHASH=0x2c00343aL -DIDENT_TIMESTAMP=0x630f65deL -DIDENT_UIDHASH=0x0ce12bcfL /opt/tinyos-main-2.1.2/tos/lib/tossim/tossim_wrap.cxx -I/usr/local/include/python2.7 -I/opt/tinyos-main-2.1.2/tos/lib/tossim -DHAVE_CONFIG_H 
+g++ -c  -shared -fPIC -o simbuild/micaz/tossim.o -g -O0 -DIDENT_APPNAME=\"SmartBraceletsA\" -DIDENT_USERNAME=\"user\" -DIDENT_HOSTNAME=\"user-iot\" -DIDENT_USERHASH=0x2c00343aL -DIDENT_TIMESTAMP=0x630f65deL -DIDENT_UIDHASH=0x0ce12bcfL /opt/tinyos-main-2.1.2/tos/lib/tossim/tossim.c -I/usr/local/include/python2.7 -I/opt/tinyos-main-2.1.2/tos/lib/tossim
+g++ -c  -shared -fPIC -o simbuild/micaz/c-support.o -g -O0 -DIDENT_APPNAME=\"SmartBraceletsA\" -DIDENT_USERNAME=\"user\" -DIDENT_HOSTNAME=\"user-iot\" -DIDENT_USERHASH=0x2c00343aL -DIDENT_TIMESTAMP=0x630f65deL -DIDENT_UIDHASH=0x0ce12bcfL /opt/tinyos-main-2.1.2/tos/lib/tossim/hashtable.c -I/usr/local/include/python2.7 -I/opt/tinyos-main-2.1.2/tos/lib/tossim
+  linking into shared object ./_TOSSIMmodule.so
+g++ -shared -fPIC  simbuild/micaz/pytossim.o simbuild/micaz/sim.o simbuild/micaz/tossim.o simbuild/micaz/c-support.o -lstdc++  -o _TOSSIMmodule.so
+  copying Python script interface TOSSIM.py from lib/tossim to local directory
+ 
+*** Successfully built micaz TOSSIM library. 
+********************************************
+*                                          *
+*             TOSSIM Script                *
+*                                          *
+********************************************
+Initializing mac....
+Initializing radio channels....
+    using topology file: topology.txt
+    using noise file: meyer-heavy.txt
+Initializing simulator....
+Activate debug message on channel init
+Activate debug message on channel boot
+Activate debug message on channel radio
+Activate debug message on channel radio_send
+Activate debug message on channel radio_ack
+Activate debug message on channel radio_rec
+Activate debug message on channel radio_pack
+Activate debug message on channel role
+Creating node 1...
+>>>Will boot at time 0 [sec]
+Creating node 2...
+>>>Will boot at time 2 [sec]
+Creating node 3...
+>>>Will boot at time 4 [sec]
+Creating node 4...
+>>>Will boot at time 6 [sec]
+Creating radio channels...
+>>>Setting radio channel from node  1  to node  2  with gain  -60.0  dBm
+>>>Setting radio channel from node  1  to node  3  with gain  -60.0  dBm
+>>>Setting radio channel from node  1  to node  4  with gain  -60.0  dBm
+>>>Setting radio channel from node  2  to node  1  with gain  -60.0  dBm
+>>>Setting radio channel from node  2  to node  3  with gain  -60.0  dBm
+>>>Setting radio channel from node  2  to node  4  with gain  -60.0  dBm
+>>>Setting radio channel from node  3  to node  1  with gain  -60.0  dBm
+>>>Setting radio channel from node  3  to node  2  with gain  -60.0  dBm
+>>>Setting radio channel from node  3  to node  4  with gain  -60.0  dBm
+>>>Setting radio channel from node  4  to node  1  with gain  -60.0  dBm
+>>>Setting radio channel from node  4  to node  2  with gain  -60.0  dBm
+>>>Setting radio channel from node  4  to node  3  with gain  -60.0  dBm
+Initializing Closest Pattern Matching (CPM)...
+Reading noise model data file: meyer-heavy.txt
+Loading:##Done!
+>>>Creating noise model for node: 1
+>>>Creating noise model for node: 2
+>>>Creating noise model for node: 3
+>>>Creating noise model for node: 4
+Start simulation with TOSSIM! 
+
+
+
+
+
+DEBUG (1): Application booted on node 1.
+DEBUG (1): Boot at time 0:0:0.000000000 
+DEBUG (1): File di configurazione non trovato, lo creo
+DEBUG (1): Sono un parent device, creo una nuova chiave
+DEBUG (1): Device key: WSFODSIVTTIDHKYPHICA
+DEBUG (1): -----Entering in PAIRING MODE:-----
+DEBUG (1): Radio on on node 1!
+DEBUG (1): Sono il Nodo 1, attivo il PAIRING timer.
+
+DEBUG (1): Pairing Timer fired. 
+DEBUG (1): ---------------SENDING-----------------
+DEBUG (1): Preparing the message... 
+DEBUG (1): Current mode: PAIRING
+DEBUG (1): Destination: BROADCAST
+DEBUG (1): Sending the packet at time 0:0:0.976562510 
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 1 
+DEBUG (1): Packet correctly sent... at time 0:0:0.979187006 
+
+DEBUG (1): Pairing Timer fired. 
+DEBUG (1): ---------------SENDING-----------------
+DEBUG (1): Preparing the message... 
+DEBUG (1): Current mode: PAIRING
+DEBUG (1): Destination: BROADCAST
+DEBUG (1): Sending the packet at time 0:0:1.953125010 
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 1 
+DEBUG (1): Packet correctly sent... at time 0:0:1.961700399 
+
+
+DEBUG (2): Application booted on node 2.
+DEBUG (2): Boot at time 0:0:2.000000000 
+DEBUG (2): File di configurazione trovato, lo leggo
+DEBUG (2): Sono un child device, leggo la chiave dal file
+DEBUG (2): Device key: WSFODSIVTTIDHKYPHICA
+DEBUG (2): -----Entering in PAIRING MODE:-----
+DEBUG (2): Radio on on node 2!
+DEBUG (2): Sono il Nodo 2, attivo il PAIRING timer.
+
+DEBUG (1): Pairing Timer fired. 
+DEBUG (1): ---------------SENDING-----------------
+DEBUG (1): Preparing the message... 
+DEBUG (1): Current mode: PAIRING
+DEBUG (1): Destination: BROADCAST
+DEBUG (1): Sending the packet at time 0:0:2.929687510 
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 1 
+DEBUG (2): ---------------RECEIVING-----------------
+DEBUG (2): Received packet at time 0:0:2.933242787
+DEBUG (2): >>>Pack
+ 	 Payload length: 0 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 1 
+DEBUG (2): Trovato dispositivo per associazione!
+DEBUG (2): -----Entering in CLOSE_PAIRING MODE:-----
+DEBUG (2): ---------------SENDING-----------------
+DEBUG (2): Preparing the message... 
+DEBUG (2): Current mode: CLOSE_PAIRING
+DEBUG (2): Destinatario: 1
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:0:2.933242787 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: CLOSE_PAIRING 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+DEBUG (1): Packet correctly sent... at time 0:0:2.933410632 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:0:2.938659625
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: CLOSE_PAIRING 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+DEBUG (1): -----Entering in CLOSE_PAIRING MODE:-----
+DEBUG (1): Associato con il dispositivo 2, termino il pairing!
+DEBUG (1): Termino timer per pairing:
+DEBUG (1): -----Entering in OPERATION MODE:-----
+DEBUG (2): Packet correctly sent... at time 0:0:2.938827471 
+DEBUG (2): Ack ricevuto
+DEBUG (2): Termino timer per pairing:
+DEBUG (2): -----Entering in OPERATION MODE:-----
+
+
+DEBUG (3): Application booted on node 3.
+DEBUG (3): Boot at time 0:0:4.000000000 
+DEBUG (3): File di configurazione trovato
+DEBUG (3): Sono un parent device, creo una nuova chiave
+DEBUG (3): Device key: CKLDGUQQMNRGPEGEOAPK
+DEBUG (3): -----Entering in PAIRING MODE:-----
+DEBUG (3): Radio on on node 3!
+DEBUG (3): Sono il Nodo 3, attivo il PAIRING timer.
+
+DEBUG (3): Pairing Timer fired. 
+DEBUG (3): ---------------SENDING-----------------
+DEBUG (3): Preparing the message... 
+DEBUG (3): Current mode: PAIRING
+DEBUG (3): Destination: BROADCAST
+DEBUG (3): Sending the packet at time 0:0:4.976562510 
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 3 
+DEBUG (2): Received packet from unPaired Device 
+DEBUG (1): Received packet from unPaired Device 
+DEBUG (3): Packet correctly sent... at time 0:0:4.983673064 
+
+DEBUG (3): Pairing Timer fired. 
+DEBUG (3): ---------------SENDING-----------------
+DEBUG (3): Preparing the message... 
+DEBUG (3): Current mode: PAIRING
+DEBUG (3): Destination: BROADCAST
+DEBUG (3): Sending the packet at time 0:0:5.953125010 
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 3 
+DEBUG (2): Received packet from unPaired Device 
+DEBUG (1): Received packet from unPaired Device 
+DEBUG (3): Packet correctly sent... at time 0:0:5.955413815 
+
+
+DEBUG (4): Application booted on node 4.
+DEBUG (4): Boot at time 0:0:6.000000000 
+DEBUG (4): File di configurazione trovato, lo leggo
+DEBUG (4): Sono un child device, leggo la chiave dal file
+DEBUG (4): Device key: CKLDGUQQMNRGPEGEOAPK
+DEBUG (4): -----Entering in PAIRING MODE:-----
+DEBUG (4): Radio on on node 4!
+DEBUG (4): Sono il Nodo 4, attivo il PAIRING timer.
+
+DEBUG (3): Pairing Timer fired. 
+DEBUG (3): ---------------SENDING-----------------
+DEBUG (3): Preparing the message... 
+DEBUG (3): Current mode: PAIRING
+DEBUG (3): Destination: BROADCAST
+DEBUG (3): Sending the packet at time 0:0:6.929687510 
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 3 
+DEBUG (4): ---------------RECEIVING-----------------
+DEBUG (4): Received packet at time 0:0:6.940292306
+DEBUG (4): >>>Pack
+ 	 Payload length: 0 
+	 Payload Sent
+		 msgType: PAIRING 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 3 
+DEBUG (4): Trovato dispositivo per associazione!
+DEBUG (4): -----Entering in CLOSE_PAIRING MODE:-----
+DEBUG (4): ---------------SENDING-----------------
+DEBUG (4): Preparing the message... 
+DEBUG (4): Current mode: CLOSE_PAIRING
+DEBUG (4): Destinatario: 3
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:0:6.940292306 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: CLOSE_PAIRING 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+DEBUG (2): Received packet from unPaired Device 
+DEBUG (1): Received packet from unPaired Device 
+DEBUG (3): Packet correctly sent... at time 0:0:6.940460152 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:0:6.945083538
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: CLOSE_PAIRING 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+DEBUG (3): -----Entering in CLOSE_PAIRING MODE:-----
+DEBUG (3): Associato con il dispositivo 4, termino il pairing!
+DEBUG (3): Termino timer per pairing:
+DEBUG (3): -----Entering in OPERATION MODE:-----
+DEBUG (4): Packet correctly sent... at time 0:0:6.945251384 
+DEBUG (4): Ack ricevuto
+DEBUG (4): Termino timer per pairing:
+DEBUG (4): -----Entering in OPERATION MODE:-----
+
+DEBUG (2): Operation Timer fired at time 0:0:12.704101572 
+DEBUG (2): Kinematic Status letto dal sensore: STANDING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:0:12.713867197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 45267 
+		 Pos_Y: 1677 
+		 Kinematic Status: STANDING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:0:12.718124374
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 45267 
+		 Pos_Y: 1677 
+		 Kinematic status: STANDING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:0:12.718292220 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:0:16.709960947 
+DEBUG (4): Kinematic Status letto dal sensore: FALLING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:0:16.719726572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 9909 
+		 Pos_Y: 24640 
+		 Kinematic Status: FALLING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:0:16.727462733
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 9909 
+		 Pos_Y: 24640 
+		 Kinematic status: FALLING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (3): *****************************
+DEBUG (3): ** FALLING status received **
+DEBUG (3): ** from the coupled device **
+DEBUG (3): *****************************
+DEBUG (3): ** FALLING POSITIONS       **
+DEBUG (3): ** X:       9909           **
+DEBUG (3): ** Y:      24640           **
+DEBUG (3): *****************************
+DEBUG (4): Packet correctly sent... at time 0:0:16.727630579 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (2): Operation Timer fired at time 0:0:22.469726572 
+DEBUG (2): Kinematic Status letto dal sensore: WALKING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:0:22.479492197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 9863 
+		 Pos_Y: 36952 
+		 Kinematic Status: WALKING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:0:22.485015846
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 9863 
+		 Pos_Y: 36952 
+		 Kinematic status: WALKING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:0:22.485183692 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:0:26.475585947 
+DEBUG (4): Kinematic Status letto dal sensore: RUNNING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:0:26.485351572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 38284 
+		 Pos_Y: 17897 
+		 Kinematic Status: RUNNING 
+DEBUG (4): Packet correctly sent... at time 0:0:26.495666453 
+DEBUG (4): *********Ack per INFO msg NON ricevuto***********
+
+DEBUG (2): Operation Timer fired at time 0:0:32.235351572 
+DEBUG (2): Kinematic Status letto dal sensore: RUNNING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:0:32.245117197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 7676 
+		 Pos_Y: 36299 
+		 Kinematic Status: RUNNING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:0:32.256439152
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 7676 
+		 Pos_Y: 36299 
+		 Kinematic status: RUNNING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:0:32.256606998 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:0:36.241210947 
+DEBUG (4): Kinematic Status letto dal sensore: RUNNING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:0:36.250976572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 12793 
+		 Pos_Y: 60498 
+		 Kinematic Status: RUNNING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:0:36.256622291
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 12793 
+		 Pos_Y: 60498 
+		 Kinematic status: RUNNING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:0:36.256790137 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (2): Operation Timer fired at time 0:0:42.000976572 
+DEBUG (2): Kinematic Status letto dal sensore: STANDING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:0:42.010742197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 51657 
+		 Pos_Y: 46336 
+		 Kinematic Status: STANDING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:0:42.016326881
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 51657 
+		 Pos_Y: 46336 
+		 Kinematic status: STANDING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:0:42.016494727 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:0:46.006835947 
+DEBUG (4): Kinematic Status letto dal sensore: STANDING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:0:46.016601572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 64249 
+		 Pos_Y: 11691 
+		 Kinematic Status: STANDING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:0:46.024261439
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 64249 
+		 Pos_Y: 11691 
+		 Kinematic status: STANDING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:0:46.024429285 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (2): Operation Timer fired at time 0:0:51.766601572 
+DEBUG (2): Kinematic Status letto dal sensore: WALKING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:0:51.776367197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 37798 
+		 Pos_Y: 32281 
+		 Kinematic Status: WALKING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:0:51.780837996
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 37798 
+		 Pos_Y: 32281 
+		 Kinematic status: WALKING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:0:51.781005842 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:0:55.772460947 
+DEBUG (4): Kinematic Status letto dal sensore: WALKING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:0:55.782226572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 19306 
+		 Pos_Y: 10111 
+		 Kinematic Status: WALKING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:0:55.786727889
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 19306 
+		 Pos_Y: 10111 
+		 Kinematic status: WALKING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:0:55.786895734 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (2): Operation Timer fired at time 0:1:1.532226572 
+DEBUG (2): Kinematic Status letto dal sensore: WALKING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:1:1.541992197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 43847 
+		 Pos_Y: 49971 
+		 Kinematic Status: WALKING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:1:1.551803541
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 43847 
+		 Pos_Y: 49971 
+		 Kinematic status: WALKING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:1:1.551971387 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:1:5.538085947 
+DEBUG (4): Kinematic Status letto dal sensore: STANDING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:1:5.547851572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 7542 
+		 Pos_Y: 17749 
+		 Kinematic Status: STANDING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:1:5.558349558
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 7542 
+		 Pos_Y: 17749 
+		 Kinematic status: STANDING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:1:5.558517403 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (2): Operation Timer fired at time 0:1:11.297851572 
+DEBUG (2): Kinematic Status letto dal sensore: WALKING 
+DEBUG (2): Preparing the response-message... 
+DEBUG (2): Richiedo l'ACK per il messaggio! 
+DEBUG (2): Sending the packet at time 0:1:11.307617197 
+DEBUG (2): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 56316 
+		 Pos_Y: 35470 
+		 Kinematic Status: WALKING 
+DEBUG (1): ---------------RECEIVING-----------------
+DEBUG (1): Received packet at time 0:1:11.313552831
+DEBUG (1): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: WSFODSIVTTIDHKYPHICA
+		 sendingDeviceID: 2 
+		 Pos_X: 56316 
+		 Pos_Y: 35470 
+		 Kinematic status: WALKING 
+DEBUG (1): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (1): Stop Missing Timer:
+DEBUG (2): Packet correctly sent... at time 0:1:11.313720677 
+DEBUG (2): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:1:15.303710947 
+DEBUG (4): Kinematic Status letto dal sensore: WALKING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:1:15.313476572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 28324 
+		 Pos_Y: 59117 
+		 Kinematic Status: WALKING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:1:15.320922818
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 28324 
+		 Pos_Y: 59117 
+		 Kinematic status: WALKING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:1:15.321090663 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:1:25.069335947 
+DEBUG (4): Kinematic Status letto dal sensore: STANDING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:1:25.079101572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 61155 
+		 Pos_Y: 46877 
+		 Kinematic Status: STANDING 
+DEBUG (4): Packet correctly sent... at time 0:1:25.082824695 
+DEBUG (4): *********Ack per INFO msg NON ricevuto***********
+
+DEBUG (4): Operation Timer fired at time 0:1:34.834960947 
+DEBUG (4): Kinematic Status letto dal sensore: WALKING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:1:34.844726572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 715 
+		 Pos_Y: 34583 
+		 Kinematic Status: WALKING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:1:34.853042564
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 715 
+		 Pos_Y: 34583 
+		 Kinematic status: WALKING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:1:34.853210409 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:1:44.600585947 
+DEBUG (4): Kinematic Status letto dal sensore: STANDING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:1:44.610351572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 21930 
+		 Pos_Y: 4390 
+		 Kinematic Status: STANDING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:1:44.612976068
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 21930 
+		 Pos_Y: 4390 
+		 Kinematic status: STANDING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:1:44.613143914 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:1:54.366210947 
+DEBUG (4): Kinematic Status letto dal sensore: WALKING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:1:54.375976572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 34525 
+		 Pos_Y: 19561 
+		 Kinematic Status: WALKING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:1:54.384109459
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 34525 
+		 Pos_Y: 19561 
+		 Kinematic status: WALKING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:1:54.384277305 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (4): Operation Timer fired at time 0:2:4.131835947 
+DEBUG (4): Kinematic Status letto dal sensore: FALLING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:2:4.141601572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 42989 
+		 Pos_Y: 58694 
+		 Kinematic Status: FALLING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:2:4.149490320
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 42989 
+		 Pos_Y: 58694 
+		 Kinematic status: FALLING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (3): *****************************
+DEBUG (3): ** FALLING status received **
+DEBUG (3): ** from the coupled device **
+DEBUG (3): *****************************
+DEBUG (3): ** FALLING POSITIONS       **
+DEBUG (3): ** X:      42989           **
+DEBUG (3): ** Y:      58694           **
+DEBUG (3): *****************************
+DEBUG (4): Packet correctly sent... at time 0:2:4.149658166 
+DEBUG (4): Ack per INFO msg ricevuto
+
+DEBUG (1): Missing Timer fired at time 0:2:9.907226572 
+DEBUG (1): ****************************************************************
+DEBUG (1): ** MISSING TIMER:  0:2:9.907226572                           **
+DEBUG (1): ** no message received from the coupled device in 1 minute:   **
+DEBUG (1): ****************************************************************
+DEBUG (1): ** LAST RECEIVED POSITION *******
+DEBUG (1): ** X:      56316               **
+DEBUG (1): ** Y:      35470               **
+DEBUG (1): *********************************
+
+DEBUG (4): Operation Timer fired at time 0:2:13.897460947 
+DEBUG (4): Kinematic Status letto dal sensore: RUNNING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:2:13.907226572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 19268 
+		 Pos_Y: 37043 
+		 Kinematic Status: RUNNING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:2:13.915069544
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 19268 
+		 Pos_Y: 37043 
+		 Kinematic status: RUNNING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:2:13.915237390 
+DEBUG (4): *********Ack per INFO msg NON ricevuto***********
+
+DEBUG (4): Operation Timer fired at time 0:2:23.663085947 
+DEBUG (4): Kinematic Status letto dal sensore: WALKING 
+DEBUG (4): Preparing the response-message... 
+DEBUG (4): Richiedo l'ACK per il messaggio! 
+DEBUG (4): Sending the packet at time 0:2:23.672851572 
+DEBUG (4): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 Pos_X: 55772 
+		 Pos_Y: 2548 
+		 Kinematic Status: WALKING 
+DEBUG (3): ---------------RECEIVING-----------------
+DEBUG (3): Received packet at time 0:2:23.677597028
+DEBUG (3): >>>Pack
+ 	 Payload length: 28 
+	 Payload Sent
+		 msgType: INFO 
+ 		 deviceKey: CKLDGUQQMNRGPEGEOAPK
+		 sendingDeviceID: 4 
+		 Pos_X: 55772 
+		 Pos_Y: 2548 
+		 Kinematic status: WALKING 
+DEBUG (3): Ricevuto messaggio dal dispositivo accoppiato:
+DEBUG (3): Stop Missing Timer:
+DEBUG (4): Packet correctly sent... at time 0:2:23.677764873 
+DEBUG (4): Ack per INFO msg ricevuto
+
+
+
+Simulation finished!
+
