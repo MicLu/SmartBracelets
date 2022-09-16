@@ -32,4 +32,4 @@ To run the simulation, move to the project folder then:
 
 
 ## Node-red
-
+A node red flow it's used to filter bracelets's messages, looking for **FALLING** or **MISSING** messages and send a personalized alarm message with the status infos.
