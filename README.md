@@ -19,17 +19,19 @@ The project has been developed simulating the communication between the two coup
 
 ## Run the simulation
 
-To run the simulation, move to the project folder then:
+To run the simulation, move to the project's folder then:
 
-1) compile the project:
-    ```
-    make micaz sim
-    ```
-2) execute the python code
-    ```
-    python RunSimulationScript.py
-    ```
+compile the project:
+```
+make micaz sim
+```
+execute the python code:
+```
+python RunSimulationScript.py
+```
 
 
 ## Node-red
 A node red flow it's used to filter bracelets's messages, looking for **FALLING** or **MISSING** messages and send a personalized alarm message with the status infos.
+
+![pic](other/NodeRedFlow.png)
